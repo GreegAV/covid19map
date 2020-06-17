@@ -37,10 +37,37 @@ public class Covid19Parser {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
             String text = strings.get(currentDate);
-            Point point=new Point(lat,lon);
-            point.setText("Date: " + currentDate + "\n\r" + text);
+            Point point = new Point(lat, lon);
+            point.setText("Confirmed: " + text + "\n\r");
             points.add(point);
         }
+        for (CSVRecord strings : parseDead) {
+            double lat = Double.parseDouble(strings.get("Lat"));
+            double lon = Double.parseDouble(strings.get("Long"));
+            String text = strings.get(currentDate);
+            Point newPoint = new Point(lat, lon);
+            for (int i = 0; i < points.size(); i++) {
+                Point testPoint = points.get(i);
+                if (testPoint.equals(newPoint)) {
+                    newPoint.setText(testPoint.getText() + "Dead: " + text + "\n\r");
+                    points.set(i, newPoint);
+                }
+            }
+        }
+        for (CSVRecord strings : parseRecovered) {
+            double lat = Double.parseDouble(strings.get("Lat"));
+            double lon = Double.parseDouble(strings.get("Long"));
+            String text = strings.get(currentDate);
+            Point newPoint = new Point(lat, lon);
+            for (int i = 0; i < points.size(); i++) {
+                Point testPoint = points.get(i);
+                if (testPoint.equals(newPoint)) {
+                    newPoint.setText(testPoint.getText() + "Recovered: " + text + "\n\r");
+                    points.set(i, newPoint);
+                }
+            }
+        }
+
         return points;
     }
 
@@ -56,7 +83,7 @@ public class Covid19Parser {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
             String text = strings.get(currentDate);
-            Point point=new Point(lat,lon);
+            Point point = new Point(lat, lon);
             point.setText("Date: " + currentDate + "\n\r" + text);
             points.add(point);
         }
@@ -75,7 +102,7 @@ public class Covid19Parser {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
             String text = strings.get(currentDate);
-            Point point=new Point(lat,lon);
+            Point point = new Point(lat, lon);
             point.setText("Date: " + currentDate + "\n\r" + text);
             points.add(point);
         }
@@ -94,7 +121,7 @@ public class Covid19Parser {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
             String text = strings.get(currentDate);
-            Point point=new Point(lat,lon);
+            Point point = new Point(lat, lon);
             point.setText("Date: " + currentDate + "\n\r" + text);
             points.add(point);
         }
