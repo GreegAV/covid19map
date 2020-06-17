@@ -16,7 +16,14 @@ public class MapController {
         this.covid19Parser = covid19Parser;
     }
 
-    @GetMapping("/confirmed")
+    @GetMapping("/")
+    public String getData(Model model) throws IOException {
+        model.addAttribute("points", covid19Parser.getCovidData());
+        return "map";
+
+    }
+
+ @GetMapping("/confirmed")
     public String getConfirmed(Model model) throws IOException {
         model.addAttribute("points", covid19Parser.getConfirmedCovidData());
         return "map";
