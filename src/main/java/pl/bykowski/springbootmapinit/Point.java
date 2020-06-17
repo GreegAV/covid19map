@@ -1,15 +1,15 @@
 package pl.bykowski.springbootmapinit;
 
-public class Poit {
+public class Point {
 
     private double lat;
     private double lon;
     private String text;
 
-    public Poit() {
+    public Point() {
     }
 
-    public Poit(double lat, double lon, String text) {
+    public Point(double lat, double lon, String text) {
         this.lat = lat;
         this.lon = lon;
         this.text = text;

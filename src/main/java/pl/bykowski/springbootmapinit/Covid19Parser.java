@@ -14,12 +14,14 @@ import java.util.List;
 @Service
 public class Covid19Parser {
 
-    private static final String url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
+    private static final String urlConfirmed = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+    private static final String urlRecovered = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
+    private static final String urlDeaths = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
 
-    public List<Poit> getCovidData() throws IOException {
-        List<Poit> poits = new ArrayList<>();
+    public List<Point> getConfirmedCovidData() throws IOException {
+        List<Point> points = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
-        String values = restTemplate.getForObject(url, String.class);
+        String values = restTemplate.getForObject(urlConfirmed, String.class);
 
         StringReader stringReader = new StringReader(values);
         CSVParser parse = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(stringReader);
@@ -27,9 +29,43 @@ public class Covid19Parser {
         for (CSVRecord strings : parse) {
             double lat = Double.parseDouble(strings.get("Lat"));
             double lon = Double.parseDouble(strings.get("Long"));
-            String text = strings.get("3/15/20");
-            poits.add(new Poit(lat, lon, text));
+            String text = strings.get("6/15/20");
+            points.add(new Point(lat, lon, text));
         }
-        return poits;
+        return points;
+    }
+
+    public List<Point> getRecoveredCovidData() throws IOException {
+        List<Point> points = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        String values = restTemplate.getForObject(urlRecovered, String.class);
+
+        StringReader stringReader = new StringReader(values);
+        CSVParser parse = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(stringReader);
+
+        for (CSVRecord strings : parse) {
+            double lat = Double.parseDouble(strings.get("Lat"));
+            double lon = Double.parseDouble(strings.get("Long"));
+            String text = strings.get("6/15/20");
+            points.add(new Point(lat, lon, text));
+        }
+        return points;
+    }
+
+    public List<Point> getDeadCovidData() throws IOException {
+        List<Point> points = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        String values = restTemplate.getForObject(urlDeaths, String.class);
+
+        StringReader stringReader = new StringReader(values);
+        CSVParser parse = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(stringReader);
+
+        for (CSVRecord strings : parse) {
+            double lat = Double.parseDouble(strings.get("Lat"));
+            double lon = Double.parseDouble(strings.get("Long"));
+            String text = strings.get("6/15/20");
+            points.add(new Point(lat, lon, text));
+        }
+        return points;
     }
 }
