@@ -17,7 +17,7 @@ public class Covid19Parser {
     private static final String urlConfirmed = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
     private static final String urlRecovered = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
     private static final String urlDeaths = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
-    private static final String currentDate = "6/16/20";
+    private static final String currentDate = "6/18/20";
 
     public List<Point> getCovidData() throws IOException {
         List<Point> points = new ArrayList<>();
