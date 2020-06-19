@@ -11,12 +11,15 @@
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 
-    <style>#mapid { height: 500px; }</style>
+    <style>#mapid {
+        height: 500px;
+        width: 500px;
+    }</style>
 
 </head>
 <body>
 
-<div id="mapid"></div>
+<div id="mapid">
 
 <script th:inline="javascript">
 
@@ -34,13 +37,11 @@
             .openPopup();
     })
 
-    map.setView( [30,30], 2);
-
-
+    map.setView([30, 30], 1);
 
 
 </script>
-
+</div>
 
 </body>
 </html>
